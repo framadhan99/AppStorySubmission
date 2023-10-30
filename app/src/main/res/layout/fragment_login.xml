@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.ui.fragments.LoginFragment">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/biru_cerah"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/text_sign_in"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/biru_cerah"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_login_password"
+        tools:ignore="TextContrastCheck" />
+
+    <com.fajar.storyappsubmission.features.ui.customview.EmailEditText
+        android:id="@+id/edt_login_email"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:drawableStart="@drawable/ic_outline_email_24"
+        android:drawablePadding="10dp"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
+        android:outlineProvider="background"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:singleLine="true"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_desc"
+        tools:ignore="TextContrastCheck" />
+
+    <com.fajar.storyappsubmission.features.ui.customview.PasswordEditText
+        android:id="@+id/edt_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:drawableStart="@drawable/ic_outline_lock_24"
+        android:drawablePadding="10dp"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:outlineProvider="background"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:singleLine="true"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_login_email"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="108dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/text_login_welcome"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/text_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_login_decs"
+        android:textColor="@color/abu_abu_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_welcome"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/text_dont_have_acc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_don_t_have_a_account"
+        android:textAlignment="center"
+        android:textColor="@color/abu_abu_text"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/text_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/text_register"
+        android:textColor="@color/biru_cerah"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_dont_have_acc"
+        app:layout_constraintStart_toEndOf="@+id/text_dont_have_acc"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
