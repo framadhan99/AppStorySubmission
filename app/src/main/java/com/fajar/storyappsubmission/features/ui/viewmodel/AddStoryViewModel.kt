@@ -9,11 +9,12 @@ import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreMana
 import com.fajar.storyappsubmission.core.data.resource.remote.ApiResult
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryRepo
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import javax.inject.Inject
 
-
+@HiltViewModel
 class AddStoryViewModel @Inject constructor(
     private val storyRepository: StoryRepo,
     private val dataStoreManager: DataStoreManager

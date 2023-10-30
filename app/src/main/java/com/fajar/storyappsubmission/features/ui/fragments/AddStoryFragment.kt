@@ -31,6 +31,7 @@ import com.fajar.storyappsubmission.features.utils.reduceFileImage
 import com.fajar.storyappsubmission.features.utils.rotateBitmap
 import com.fajar.storyappsubmission.features.utils.showToast
 import com.fajar.storyappsubmission.features.utils.uriToFile
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -38,7 +39,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-
+@AndroidEntryPoint
 class AddStoryFragment : Fragment() {
 
     private var _binding: FragmentAddStoryBinding? = null
