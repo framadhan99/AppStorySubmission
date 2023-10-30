@@ -60,7 +60,7 @@ class LoginFragment : Fragment() {
     private fun checkLogin(){
         loginVM.tokenUser.observe(viewLifecycleOwner){ checkLogin ->
             if (checkLogin.isNotEmpty()){
-                showToast(requireContext(), getString(R.string.notice_checking_session))
+//                showToast(requireContext(), getString(R.string.notice_checking_session))
                 val mIntent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(mIntent)
                 (activity as StoryActivity?)?.finish()
@@ -102,7 +102,7 @@ class LoginFragment : Fragment() {
                 Status.ERROR -> {
                     (activity as StoryActivity?)?.hideLoading()
                     binding.textWelcome.apply {
-                        setTextColor(ResourcesCompat.getColor(resources, R.color.merah, null))
+                        setTextColor(ResourcesCompat.getColor(resources, R.color.red, null))
                         text = getString(R.string.error_invalid_login)
                     }
                 }

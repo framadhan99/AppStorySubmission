@@ -14,13 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:backgroundTint="@color/biru_cerah"
+            android:backgroundTint="@color/green_dark"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="@string/text_sign_up"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:backgroundTint="@color/biru_cerah"
+            app:backgroundTint="@color/green_dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_edt_repassword"
@@ -33,13 +33,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/abu_abu_border"
+            app:boxStrokeColor="@color/green_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_desc_register"
             app:startIconContentDescription="@string/cd_icon_full_name"
             app:startIconDrawable="@drawable/ic_outline_people_24"
-            app:startIconTint="@color/abu_abu_icon">
+            app:startIconTint="@color/green_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -59,13 +59,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/abu_abu_border"
+            app:boxStrokeColor="@color/green_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_edt_fullname"
             app:startIconContentDescription="@string/cd_icon_email"
             app:startIconDrawable="@drawable/ic_outline_email_24"
-            app:startIconTint="@color/abu_abu_icon">
+            app:startIconTint="@color/green_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -85,13 +85,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/abu_abu_border"
+            app:boxStrokeColor="@color/green_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_edt_email"
             app:startIconContentDescription="@string/cd_icon_password"
             app:startIconDrawable="@drawable/ic_outline_lock_24"
-            app:startIconTint="@color/abu_abu_icon">
+            app:startIconTint="@color/green_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -111,13 +111,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/abu_abu_border"
+            app:boxStrokeColor="@color/green_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_edt_password"
             app:startIconContentDescription="@string/cd_icon_re_password"
             app:startIconDrawable="@drawable/ic_outline_lock_24"
-            app:startIconTint="@color/abu_abu_icon">
+            app:startIconTint="@color/green_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -193,7 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@string/text_sign_in"
-            android:textColor="@color/biru_cerah"
+            android:textColor="@color/green_dark"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/text_have_account"

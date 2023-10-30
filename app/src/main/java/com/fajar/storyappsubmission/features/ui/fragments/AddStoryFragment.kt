@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.net.http.HttpException
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,7 +18,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
-import com.fajar.storyappsubmission.features.utils.*
+import androidx.lifecycle.lifecycleScope
 import com.fajar.storyappsubmission.features.utils.Const.CAMERA_X_RESULT
 import com.fajar.storyappsubmission.features.utils.Const.PERMISSIONS
 import com.fajar.storyappsubmission.R
@@ -30,6 +31,8 @@ import com.fajar.storyappsubmission.features.utils.reduceFileImage
 import com.fajar.storyappsubmission.features.utils.rotateBitmap
 import com.fajar.storyappsubmission.features.utils.showToast
 import com.fajar.storyappsubmission.features.utils.uriToFile
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -158,20 +161,18 @@ class AddStoryFragment : Fragment() {
     }
 
     private fun uploadImage() {
-
+        Log.d("getFile","${getFile?.path}")
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
 
             val description = binding.textAddstoryLayout.editText?.text.toString()
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
             val imageMultipart = MultipartBody.Part.createFormData(
                 "photo",
                 file.name,
                 requestImageFile
             )
-
-            validateData(description, imageMultipart)
-
+             validateData(description, imageMultipart)
         } else {
             showToast(requireContext(), "Data Null")
         }
@@ -194,7 +195,8 @@ class AddStoryFragment : Fragment() {
                         }
                         Status.ERROR -> {
                             (activity as HomeActivity?)?.hideLoading()
-                            Log.d(this.toString(), data.message.toString())
+                            showToast(requireContext(), "Upload Failed")
+//                            Log.d(this.toString(), data.message.toString())
                         }
                     }
                 } else showToast(requireContext(), getString(R.string.error_data_null))

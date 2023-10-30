@@ -52,6 +52,8 @@ class StorySource @Inject constructor(
                     BearerToken = "Bearer $token",
                     desc.toRequestBody("text/plain".toMediaType()),
                     img
+//                    desc.toRequestBody("text/plain".toMediaType()),
+//                    img.asRequestBody()
                 )
                 if (!response.error) {
                     emit(ApiResult.success(response))
@@ -64,3 +66,5 @@ class StorySource @Inject constructor(
         }
     }
 }
+
+

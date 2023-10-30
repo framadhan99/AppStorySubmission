@@ -9,9 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--Customize-->
-    <color name="biru_cerah">#40BFFF</color>
-    <color name="abu_abu_icon">#9098B1</color>
-    <color name="abu_abu_border">#EBF0FF</color>
+    <color name="green_light">#CEE5D0</color>
+    <color name="green_dark">#94B49F</color>
     <color name="abu_abu_text">#9098B1</color>
-    <color name="merah">#EC0000</color>
+    <color name="red">#EC0000</color>
 </resources>

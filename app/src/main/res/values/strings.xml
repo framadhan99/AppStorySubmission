@@ -8,19 +8,19 @@
         <string name="cd_capture_image">Capture Image</string>
         <string name="cd_switch_camera">Switch Camera</string>
 
-        <string name="hint_email">E-Mail</string>
+        <string name="hint_email">EMail</string>
         <string name="hint_password">Password</string>
-        <string name="hint_full_name">Full Name</string>
-        <string name="hint_re_password">Re-Password</string>    
+        <string name="hint_full_name">Name</string>
+        <string name="hint_re_password">Confirm Password</string>
 
         <string name="text_sign_in">Sign In</string>
-        <string name="text_login_welcome">Welcome to Story Dicoding</string>
+        <string name="text_login_welcome">My Story App</string>
         <string name="text_login_decs">Sign in to continue</string>
-        <string name="text_register_caption">Let’s Get Started</string>
+        <string name="text_register_caption">Haloo, Let’s Get Started</string>
         <string name="text_sign_up">Sign Up</string>
-        <string name="text_register_desc">Create an new account</string>
-        <string name="text_have_a_acc">have a account?</string>
-        <string name="text_don_t_have_a_account">Don’t have a account?</string>
+        <string name="text_register_desc">Create a new account</string>
+        <string name="text_have_a_acc">have an account?</string>
+        <string name="text_don_t_have_a_account">Don’t have an account?</string>
         <string name="text_register">Register</string>
         <string name="text_description">Description</string>
         <string name="text_add_story">Add Story</string>
