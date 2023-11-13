@@ -30,6 +30,7 @@ class DetailActivity : AppCompatActivity() {
             Glide.with(ivStoryDetail)
                 .load(data?.photoUrl)
                 .into(ivStoryDetail)
+            textName.text = data?.name
             textStorydescriptionDetail.text = data?.description
             textDateDetail.text = data?.createdAt
         }

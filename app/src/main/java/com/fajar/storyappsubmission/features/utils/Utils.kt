@@ -139,5 +139,5 @@ fun CharSequence.isEmailValid(): Boolean {
 }
 
 fun CharSequence.isPasswordValid(): Boolean {
-    return !TextUtils.isEmpty(this) && this.length < 6
+    return !TextUtils.isEmpty(this) && this.length < 8
 }

@@ -32,7 +32,7 @@
         <string name="text_preview_image">Preview Image</string>
 
         <string name="notice_checking_session">Checking Session!</string>
-        <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">Google Maps Key</string>
+        <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDdSaxgvUsTTUANb0dtRPS6DSUVjo5WnV8</string>
 
         <string name="error_permission">Error! Permission not granted!</string>
         <string name="error_dialog_alert">Error! Something Wrong!</string>
@@ -43,7 +43,7 @@
         <string name="error_empty_password">Password Must Not Empty</string>
         <string name="error_re_password">Password Must Same</string>
         <string name="error_invalid_login">Wrong Email or Password</string>
-        <string name="error_char_password">Password Must Exceed 6 Characters</string>
+        <string name="error_char_password">Password Must Exceed 8 Characters</string>
         <string name="error_check_not_valid">Please fill the input correctly</string>
         <string name="success_register">Register Successful</string>
         <string name="title_activity_maps">MapsActivity</string>
@@ -51,5 +51,6 @@
         <string name="retry">Retry</string>
     <string name="title">StoryApp</string>
     <string name="log_out">logout</string>
+    <string name="text_name">Name</string>
 
 </resources>
