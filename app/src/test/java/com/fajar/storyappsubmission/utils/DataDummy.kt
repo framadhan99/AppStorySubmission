@@ -5,7 +5,7 @@ import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryRepo
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponse
 
 object DataDummy {
-    fun generateErrorDummyStory(): StoryResponse {
+    fun generateDummyQuoteResponse(): StoryResponse {
         return StoryResponse(
             error = true,
             message = "error",
