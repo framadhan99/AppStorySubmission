@@ -6,14 +6,20 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.fajar.storyappsubmission.core.data.model.Story
+import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
 
 @Dao
 interface StoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStory(story: List<Story>)
 
+//    @Query("SELECT * FROM Story")
+//    fun getAllStory(): PagingSource<Int, Story>
     @Query("SELECT * FROM Story")
-    fun getAllStory(): PagingSource<Int, Story>
+    fun getAllStory(): PagingSource<Int, StoryResponseItems>
+
+    @Query("SELECT * FROM Story")
+    fun getAllStories(): PagingSource<Int, Story>
 
 
     @Query("SELECT * FROM Story")

@@ -31,7 +31,7 @@ class StorySource @Inject constructor(
             remoteMediator = RemoteMediator(storyDatabase, storyServices, token),
             pagingSourceFactory = {
 //                StoryPagingSource(storyServices, token)
-                storyDatabase.StoryDao().getAllStory()
+                storyDatabase.StoryDao().getAllStories()
             }
         ).flow
     }
