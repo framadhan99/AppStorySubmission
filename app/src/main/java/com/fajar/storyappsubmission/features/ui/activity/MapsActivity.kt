@@ -7,16 +7,19 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.fajar.storyappsubmission.R
 import com.fajar.storyappsubmission.databinding.ActivityMapsBinding
-import com.fajar.storyappsubmission.features.ui.viewmodel.HomeViewModel
+import com.fajar.storyappsubmission.features.ui.viewmodel.HomeVM
+import com.fajar.storyappsubmission.features.ui.viewmodel.MapsViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,7 +29,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    private val HomeVM : HomeViewModel by viewModels()
+    private val HomeVM : HomeVM by viewModels()
+    private val mapsViewModel by viewModels<MapsViewModel>()
+    private val boundsBuilder  = LatLngBounds.builder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,13 +60,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         lifecycleScope.launch {
-            HomeVM.getMapAll().forEach {
-                val storyLocation = LatLng(it.lat, it.lon)
-                mMap.uiSettings.isZoomControlsEnabled = true
-                mMap.addMarker(
-                    MarkerOptions().position(storyLocation).title(it.name).snippet(it.description).icon(
-                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)))
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(storyLocation))
+            when(val response = mapsViewModel.getLatLong() ){
+                is MapsViewModel.MapsResult.Success -> {
+                    val story = response.data.listStory
+                    story.forEach{ listStoryItem ->
+                        val latLng = LatLng(listStoryItem.lat as Double, listStoryItem.lon as Double)
+                        googleMap.addMarker(MarkerOptions().position(latLng).title(listStoryItem.name))
+                        boundsBuilder.include(latLng)
+                    }
+                    val bounds: LatLngBounds = boundsBuilder.build()
+                    googleMap.animateCamera(
+                        CameraUpdateFactory.newLatLngBounds(
+                            bounds,
+                            resources.displayMetrics.widthPixels,
+                            resources.displayMetrics.heightPixels,
+                            300
+                        )
+                    )
+
+                }
+                is MapsViewModel.MapsResult.Error -> {
+
+                }
             }
         }
     }

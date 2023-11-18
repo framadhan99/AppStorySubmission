@@ -7,13 +7,16 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
+import com.fajar.storyappsubmission.core.data.model.Story
+import com.fajar.storyappsubmission.core.data.resource.local.RemoteMediator
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDatabase
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class HomeRepository @Inject constructor(private val storyDatabase: StoryDatabase, private val homeService: HomeService){
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean>
-        get() = _isLoading
+
     fun getStory(): LiveData<PagingData<StoryResponseItems>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
@@ -26,6 +29,8 @@ class HomeRepository @Inject constructor(private val storyDatabase: StoryDatabas
             }
         ).liveData
     }
+
+
 
 
 

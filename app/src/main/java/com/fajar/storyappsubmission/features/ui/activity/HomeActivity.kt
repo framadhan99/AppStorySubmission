@@ -11,16 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fajar.storyappsubmission.R
 import com.fajar.storyappsubmission.core.data.resource.local.page.LoadingStateAdapter
 import com.fajar.storyappsubmission.databinding.ActivityHomeBinding
-import com.fajar.storyappsubmission.features.StoryActivity
-import com.fajar.storyappsubmission.features.ui.adapter.HomeStoryAdapter
+import com.fajar.storyappsubmission.features.hometest.HomeAdapter
+import com.fajar.storyappsubmission.features.ui.viewmodel.HomeVM
 import com.fajar.storyappsubmission.features.ui.fragments.AddStoryFragment
-import com.fajar.storyappsubmission.features.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-    private val homeVM: HomeViewModel by viewModels()
+    private val homeVM: HomeVM by viewModels()
     private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,19 +57,15 @@ class HomeActivity : AppCompatActivity() {
 
         binding.rvStory1.layoutManager = LinearLayoutManager(this)
 
-        val adapter = HomeStoryAdapter()
+        val adapter = HomeAdapter()
         binding.rvStory1.adapter = adapter.withLoadStateFooter(
             footer = LoadingStateAdapter {
                 adapter.retry()
             }
         )
 
-        homeVM.tokenUser().observe(this) {
-            if (it.isNotEmpty()) {
-                homeVM.pagingStory(it).observe(this){ data ->
-                    adapter.submitData(lifecycle, data)
-                }
-            } else startActivity(Intent(this, StoryActivity::class.java))
+        homeVM.story.observe(this) {
+            adapter.submitData(lifecycle, it)
         }
     }
 
@@ -81,7 +76,6 @@ class HomeActivity : AppCompatActivity() {
                 setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.log_out -> {
-                            homeVM.removeSession()
                             true
                         }
                         R.id.map -> {

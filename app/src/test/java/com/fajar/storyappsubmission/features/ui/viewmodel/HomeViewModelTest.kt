@@ -3,22 +3,14 @@ package com.fajar.storyappsubmission.features.ui.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asFlow
 import androidx.paging.AsyncPagingDataDiffer
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.recyclerview.widget.ListUpdateCallback
-import com.fajar.storyappsubmission.core.data.model.Story
-import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreManager
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryRepo
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponse
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StorySource
 import com.fajar.storyappsubmission.features.hometest.HomeAdapter
 import com.fajar.storyappsubmission.features.hometest.HomeRepository
-import com.fajar.storyappsubmission.features.hometest.HomeVM
 import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
-import com.fajar.storyappsubmission.features.ui.adapter.HomeStoryAdapter
 import com.fajar.storyappsubmission.utils.DataDummy
 import com.fajar.storyappsubmission.utils.MainDispatcherRule
 import com.fajar.storyappsubmission.utils.getOrAwaitValue
@@ -31,7 +23,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
