@@ -9,13 +9,17 @@ import com.fajar.storyappsubmission.core.data.model.Story
 import com.fajar.storyappsubmission.core.data.resource.local.room.KeyEntity
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDatabase
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
+import com.fajar.storyappsubmission.features.hometest.HomeService
+import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
 
 @OptIn(ExperimentalPagingApi::class)
 class RemoteMediator(
     private val database: StoryDatabase,
-    private val storyServices: StoryServices,
+//    private val storyServices: StoryServices,
+    private val homeService: HomeService,
     private val token: String
-) : RemoteMediator<Int, Story>() {
+
+) : RemoteMediator<Int, StoryResponseItems>() {
 
 
     private companion object {
@@ -28,7 +32,7 @@ class RemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Story>
+        state: PagingState<Int, StoryResponseItems>
     ): MediatorResult {
         val page = when (loadType) {
             LoadType.REFRESH ->{
@@ -50,12 +54,12 @@ class RemoteMediator(
         }
 
         try {
-            val responseData = storyServices.getStories(token, page, state.config.pageSize).listStory
+            val responseData = homeService.fetchStory( page, state.config.pageSize).listStory
             val endOfPaginationReached = responseData.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    database.StoryDao().deleteAll()
+                    database.storyDao().deleteAll()
                     database.KeysDao().deleteKeys()
                 }
                 val prevKey = if (page == 1) null else page - 1
@@ -64,7 +68,7 @@ class RemoteMediator(
                     KeyEntity(id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
                 database.KeysDao().insertAll(keys)
-                database.StoryDao().insertStory(responseData)
+                database.storyDao().insertStory(responseData)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: Exception) {
@@ -72,19 +76,19 @@ class RemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, Story>): KeyEntity? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, StoryResponseItems>): KeyEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
             database.KeysDao().getRemoteKeysId(data.id)
         }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, Story>): KeyEntity? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, StoryResponseItems>): KeyEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
             database.KeysDao().getRemoteKeysId(data.id)
         }
     }
 
-    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, Story>): KeyEntity? {
+    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, StoryResponseItems>): KeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 database.KeysDao().getRemoteKeysId(id)

@@ -52,7 +52,7 @@ class StoryRemoteMediator (
             database.withTransaction{
                 if (loadType == LoadType.REFRESH){
                     database.KeysDao().deleteKeys()
-                    database.StoryDao().deleteAll()
+                    database.storyDao().deleteAll()
                 }
                 val prevKey = if(page==1 ) null else page -1
                 val nextKey = if (endOfPaginationReached) null else page + 1
@@ -60,7 +60,7 @@ class StoryRemoteMediator (
                     KeyEntity(id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
                 database.KeysDao().insertAll(keys)
-                database.StoryDao().insertStory(responseData)
+                database.storyDao().insertStory(responseData)
             }
             MediatorResult.Success(endOfPaginationReached)
         }catch (exception:Exception){

@@ -11,7 +11,7 @@ import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
 @Dao
 interface StoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertStory(story: List<Story>)
+    suspend fun insertStory(story: List<StoryResponseItems>)
 
 //    @Query("SELECT * FROM Story")
 //    fun getAllStory(): PagingSource<Int, Story>
@@ -19,11 +19,11 @@ interface StoryDao {
     fun getAllStory(): PagingSource<Int, StoryResponseItems>
 
     @Query("SELECT * FROM Story")
-    fun getAllStories(): PagingSource<Int, Story>
+    fun getAllStories(): PagingSource<Int, StoryResponseItems>
 
 
     @Query("SELECT * FROM Story")
-    suspend fun getMapAll(): List<Story>
+    suspend fun getMapAll(): List<StoryResponseItems>
 
 
     @Query("DELETE FROM Story")

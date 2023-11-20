@@ -4,17 +4,19 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.fajar.storyappsubmission.core.data.model.Story
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
+import com.fajar.storyappsubmission.features.hometest.HomeService
+import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
 
-class StoryPageSource(private val storyServices: StoryServices, private val token : String) : PagingSource<Int, Story>() {
+class StoryPageSource(private val homeService: HomeService) : PagingSource<Int, StoryResponseItems>() {
 
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Story> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, StoryResponseItems> {
         return try {
             val page = params.key ?: INITIAL_PAGE_INDEX
-            val responseData = storyServices.getStories(token, page, params.loadSize).listStory
+            val responseData = homeService.fetchStory(page, params.loadSize).listStory
 
             LoadResult.Page(
                 data = responseData,
@@ -26,7 +28,7 @@ class StoryPageSource(private val storyServices: StoryServices, private val toke
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Story>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, StoryResponseItems>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)

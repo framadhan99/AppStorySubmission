@@ -29,7 +29,7 @@ class AddStoryViewModel @Inject constructor(
     ): LiveData<ApiResult<StoryResponse>> {
         val result = MutableLiveData<ApiResult<StoryResponse>>()
         viewModelScope.launch {
-            storyRepository.addStory(token, desc, img).collect {
+            storyRepository.addStory( desc, img).collect {
                 result.postValue(it)
             }
         }

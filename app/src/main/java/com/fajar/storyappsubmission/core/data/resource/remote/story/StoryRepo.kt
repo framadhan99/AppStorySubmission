@@ -8,6 +8,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.fajar.storyappsubmission.core.data.model.Story
 import com.fajar.storyappsubmission.core.data.resource.remote.ApiResult
+import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
@@ -18,20 +19,20 @@ import javax.inject.Singleton
 @Singleton
 class StoryRepo @Inject constructor(private val storySource: StorySource) {
 
-    fun loadData(token: String): LiveData<PagingData<Story>> =
-        storySource.loadData(token).asLiveData()
+//    fun loadData(token: String): LiveData<PagingData<StoryResponseItems>> =
+//        storySource.loadData(token).asLiveData()
 
-    suspend fun getData(): List<Story> {
+    suspend fun getData(): List<StoryResponseItems> {
         return storySource.getData()
     }
 
 
     suspend fun addStory(
-        token: String,
+//        token: String,
         desc: String,
         img: MultipartBody.Part
     ): Flow<ApiResult<StoryResponse>> {
-        return storySource.addStory(token, desc, img).flowOn(Dispatchers.IO)
+        return storySource.addStory( desc, img).flowOn(Dispatchers.IO)
     }
 
 

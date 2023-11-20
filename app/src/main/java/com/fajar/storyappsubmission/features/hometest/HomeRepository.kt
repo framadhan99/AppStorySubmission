@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class HomeRepository @Inject constructor(private val storyDatabase: StoryDatabase, private val homeService: HomeService){
 
     fun getStory(): LiveData<PagingData<StoryResponseItems>> {
@@ -25,7 +24,7 @@ class HomeRepository @Inject constructor(private val storyDatabase: StoryDatabas
             ),
             remoteMediator = StoryRemoteMediator(storyDatabase, homeService),
             pagingSourceFactory = {
-                storyDatabase.StoryDao().getAllStory()
+                storyDatabase.storyDao().getAllStory()
             }
         ).liveData
     }
