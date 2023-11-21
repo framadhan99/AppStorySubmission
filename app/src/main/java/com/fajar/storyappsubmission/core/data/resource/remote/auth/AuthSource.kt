@@ -1,6 +1,8 @@
 package com.fajar.storyappsubmission.core.data.resource.remote.auth
 
+import com.fajar.storyappsubmission.core.data.model.User
 import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreManager
+import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferences
 import com.fajar.storyappsubmission.core.data.resource.remote.ApiResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,6 +14,7 @@ class AuthSource @Inject constructor(
     private val authService: AuthServices,
     private val dataStoreManager: DataStoreManager
 ) {
+
 
 
     suspend fun registerUser(authBody: AuthBody): Flow<ApiResult<AuthResponse>> {
@@ -37,6 +40,7 @@ class AuthSource @Inject constructor(
                 val response = authService.loginUser(authBody)
                 if (!response.error) {
                     dataStoreManager.storeSession(response.loginResult.token)
+//
                     emit(ApiResult.success(response))
                 } else {
                     emit(ApiResult.error(response.message))

@@ -22,13 +22,13 @@ class StorySource @Inject constructor(
     private val storyDatabase: StoryDatabase
 ) {
 
-    fun loadData(token: String): Flow<PagingData<Story>> {
+    fun loadData(): Flow<PagingData<Story>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
                 pageSize = 5
             ),
-            remoteMediator = RemoteMediator(storyDatabase, storyServices, token),
+            remoteMediator = RemoteMediator(storyDatabase, storyServices),
             pagingSourceFactory = {
 //                StoryPagingSource(storyServices, token)
                 storyDatabase.StoryDao().getAllStory()
@@ -41,7 +41,7 @@ class StorySource @Inject constructor(
     }
 
     suspend fun addStory(
-        token: String,
+//        token: String,
         desc: String,
         img: MultipartBody.Part
     ): Flow<ApiResult<StoryResponse>> {
@@ -49,7 +49,7 @@ class StorySource @Inject constructor(
             try {
                 emit(ApiResult.loading())
                 val response = storyServices.addStory(
-                    BearerToken = "Bearer $token",
+//                    BearerToken = "Bearer $token",
                     desc.toRequestBody("text/plain".toMediaType()),
                     img
 //                    desc.toRequestBody("text/plain".toMediaType()),

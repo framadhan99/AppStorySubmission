@@ -180,28 +180,30 @@ class AddStoryFragment : Fragment() {
     }
 
     private fun validateData(desc: String, img: MultipartBody.Part) {
-        addStoryVM.tokenUser.observe(viewLifecycleOwner) {
-            addStoryVM.addStory(it, desc, img).observe(viewLifecycleOwner) { data ->
-                if (data != null) {
-                    when (data.status) {
-                        Status.LOADING -> {
-                            (activity as HomeActivity?)?.showLoading()
-                        }
-                        Status.SUCCESS -> {
-                            (activity as HomeActivity?)?.hideLoading()
-                            requireActivity().finish()
-                            val intent = Intent(requireActivity(), HomeActivity::class.java)
-                            requireActivity().startActivity(intent)
-                            showToast(requireContext(), "Upload Successful")
-                        }
-                        Status.ERROR -> {
-                            (activity as HomeActivity?)?.hideLoading()
-                            showToast(requireContext(), "Upload Failed")
-//                            Log.d(this.toString(), data.message.toString())
-                        }
+        addStoryVM.addStory( desc, img).observe(viewLifecycleOwner) { data ->
+            Log.d("cekDataUpload", "$data")
+            if (data != null) {
+                when (data.status) {
+                    Status.LOADING -> {
+                        (activity as HomeActivity?)?.showLoading()
                     }
-                } else showToast(requireContext(), getString(R.string.error_data_null))
-            }
+
+                    Status.SUCCESS -> {
+                        (activity as HomeActivity?)?.hideLoading()
+                        requireActivity().finish()
+                        val intent = Intent(requireActivity(), HomeActivity::class.java)
+                        requireActivity().startActivity(intent)
+                        showToast(requireContext(), "Upload Successful")
+                        Log.d("cekDataUploadSucces", "$data")
+                    }
+                    Status.ERROR -> {
+                        (activity as HomeActivity?)?.hideLoading()
+                        showToast(requireContext(), "Upload Failed")
+                        Log.d("cekDataUploadFailed", "$data")
+//                            Log.d(this.toString(), data.message.toString())
+                    }
+                }
+            } else showToast(requireContext(), getString(R.string.error_data_null))
         }
     }
 

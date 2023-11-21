@@ -15,8 +15,8 @@ import javax.inject.Singleton
 @Singleton
 class StoryRepo @Inject constructor(private val storySource: StorySource) {
 
-    fun loadData(token: String): LiveData<PagingData<Story>> =
-        storySource.loadData(token).asLiveData()
+    fun loadData(): LiveData<PagingData<Story>> =
+        storySource.loadData().asLiveData()
 
     suspend fun getData(): List<Story> {
         return storySource.getData()
@@ -24,10 +24,10 @@ class StoryRepo @Inject constructor(private val storySource: StorySource) {
 
 
     suspend fun addStory(
-        token: String,
+//        token: String,
         desc: String,
         img: MultipartBody.Part
     ): Flow<ApiResult<StoryResponse>> {
-        return storySource.addStory(token, desc, img).flowOn(Dispatchers.IO)
+        return storySource.addStory( desc, img).flowOn(Dispatchers.IO)
     }
 }

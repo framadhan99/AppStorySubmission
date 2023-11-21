@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.fajar.storyappsubmission.core.data.model.Story
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
 
-class StoryPageSource(private val storyServices: StoryServices, private val token : String) : PagingSource<Int, Story>() {
+class StoryPageSource(private val storyServices: StoryServices) : PagingSource<Int, Story>() {
 
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
@@ -14,7 +14,7 @@ class StoryPageSource(private val storyServices: StoryServices, private val toke
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Story> {
         return try {
             val page = params.key ?: INITIAL_PAGE_INDEX
-            val responseData = storyServices.getStories(token, page, params.loadSize).listStory
+            val responseData = storyServices.getStories( page, params.loadSize).listStory
 
             LoadResult.Page(
                 data = responseData,

@@ -2,6 +2,7 @@ package com.fajar.storyappsubmission.features.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.fajar.storyappsubmission.R
+import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferences
 import com.fajar.storyappsubmission.core.data.resource.remote.auth.AuthBody
 import com.fajar.storyappsubmission.databinding.FragmentLoginBinding
 import com.fajar.storyappsubmission.features.ui.activity.HomeActivity
@@ -19,6 +21,7 @@ import com.fajar.storyappsubmission.features.utils.hideKeyboard
 import com.fajar.storyappsubmission.features.utils.showToast
 import com.fajar.storyappsubmission.features.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -29,6 +32,7 @@ class LoginFragment : Fragment() {
     private lateinit var password: String
 
     private val loginVM: LoginViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -98,6 +102,7 @@ class LoginFragment : Fragment() {
                     val mIntent = Intent(requireContext(), HomeActivity::class.java)
                     startActivity(mIntent)
                     (activity as StoryActivity?)?.finish()
+                    Log.d("dataUser", "$data")
                 }
                 Status.ERROR -> {
                     (activity as StoryActivity?)?.hideLoading()

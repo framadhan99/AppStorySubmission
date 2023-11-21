@@ -67,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
 
         homeVM.tokenUser().observe(this) {
             if (it.isNotEmpty()) {
-                homeVM.pagingStory(it).observe(this){ data ->
+                homeVM.pagingStory().observe(this){ data ->
                     adapter.submitData(lifecycle, data)
                 }
             } else startActivity(Intent(this, StoryActivity::class.java))

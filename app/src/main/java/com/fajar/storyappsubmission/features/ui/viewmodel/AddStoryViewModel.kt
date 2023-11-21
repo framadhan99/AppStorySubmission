@@ -23,13 +23,13 @@ class AddStoryViewModel @Inject constructor(
     val tokenUser: LiveData<String> = dataStoreManager.tokenUser.asLiveData()
 
     fun addStory(
-        token: String,
+//        token: String,
         desc: String,
         img: MultipartBody.Part
     ): LiveData<ApiResult<StoryResponse>> {
         val result = MutableLiveData<ApiResult<StoryResponse>>()
         viewModelScope.launch {
-            storyRepository.addStory(token, desc, img).collect {
+            storyRepository.addStory(desc, img).collect {
                 result.postValue(it)
             }
         }

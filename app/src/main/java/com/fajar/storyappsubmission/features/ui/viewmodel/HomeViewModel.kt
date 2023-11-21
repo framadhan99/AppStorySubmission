@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import com.fajar.storyappsubmission.core.data.model.User
 import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreManager
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +22,7 @@ class HomeViewModel @Inject constructor(
         return dataStoreManager.tokenUser.asLiveData()
     }
 
-    fun pagingStory(token: String) = storyRepository.loadData("Bearer $token").cachedIn(viewModelScope)
+    fun pagingStory() = storyRepository.loadData().cachedIn(viewModelScope)
 
 
     suspend fun getMapAll() = storyRepository.getData()

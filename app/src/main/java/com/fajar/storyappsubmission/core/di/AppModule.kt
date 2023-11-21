@@ -1,10 +1,20 @@
 package com.fajar.storyappsubmission.core.di
 
+import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
+import android.media.session.MediaSession.Token
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
+import androidx.room.Room
 import com.fajar.storyappsubmission.core.data.resource.local.room.KeyDao
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDao
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDatabase
 import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreManager
+import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreManager.S.USER_TOKEN_KEY
+import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferences
+import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferences.Companion.USER_TOKEN
 import com.fajar.storyappsubmission.core.data.resource.remote.auth.AuthServices
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
 import dagger.Module
@@ -22,19 +32,24 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
+    private  val BaseURL = "https://story-api.dicoding.dev/v1/"
     @Provides
 //    providesOkHttpClient
-    fun providesOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(dataStoreManager: DataStoreManager) :OkHttpClient{
         return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .connectTimeout(150, TimeUnit.SECONDS)
-            .readTimeout(150, TimeUnit.SECONDS)
+            .addInterceptor { chain ->
+                val requestBuilder = chain.request().newBuilder()
+                val token = dataStoreManager.token.toString()
+                Log.d("cekTokenInRetrofit", "$token")
+                requestBuilder.addHeader("Authorization", "Bearer $token")
+                chain.proceed(requestBuilder.build())
+            }
             .build()
     }
 
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(" https://story-api.dicoding.dev/v1/")
+        .baseUrl(BaseURL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
@@ -68,3 +83,4 @@ class AppModule {
         DataStoreManager(appContext)
 
 }
+

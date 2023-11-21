@@ -14,7 +14,7 @@ import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryService
 class RemoteMediator(
     private val database: StoryDatabase,
     private val storyServices: StoryServices,
-    private val token: String
+//    private val token: String
 ) : RemoteMediator<Int, Story>() {
 
 
@@ -50,7 +50,7 @@ class RemoteMediator(
         }
 
         try {
-            val responseData = storyServices.getStories(token, page, state.config.pageSize).listStory
+            val responseData = storyServices.getStories( page, state.config.pageSize).listStory
             val endOfPaginationReached = responseData.isEmpty()
 
             database.withTransaction {
