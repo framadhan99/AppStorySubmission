@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,6 +68,7 @@ class HomeActivity : AppCompatActivity() {
 
         homeVM.tokenUser().observe(this) {
             if (it.isNotEmpty()) {
+                Log.d("getTokennnnnnn", "$it")
                 homeVM.pagingStory().observe(this){ data ->
                     adapter.submitData(lifecycle, data)
                 }

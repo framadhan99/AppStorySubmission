@@ -17,6 +17,7 @@ import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferenc
 import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferences.Companion.USER_TOKEN
 import com.fajar.storyappsubmission.core.data.resource.remote.auth.AuthServices
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
+import com.fajar.storyappsubmission.features.ui.viewmodel.LoginViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,13 +34,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
     private  val BaseURL = "https://story-api.dicoding.dev/v1/"
+//    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTB3QlBWdzdYSGJSTmlHcTUiLCJpYXQiOjE3MDA3OTQ4NzF9.JuhELfEIsh-ldvhDNoXZblgHDqwmiL89Uok0JMf-fqY"
     @Provides
 //    providesOkHttpClient
-    fun provideOkHttpClient(dataStoreManager: DataStoreManager) :OkHttpClient{
+    fun provideOkHttpClient() :OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val requestBuilder = chain.request().newBuilder()
-                val token = dataStoreManager.token.toString()
+                val token = ""
                 Log.d("cekTokenInRetrofit", "$token")
                 requestBuilder.addHeader("Authorization", "Bearer $token")
                 chain.proceed(requestBuilder.build())
@@ -68,7 +70,7 @@ class AppModule {
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context) = StoryDatabase.getDatabase(appContext)
 
-
+    @Singleton
     @Provides
     fun provideAuthService(retrofit: Retrofit): AuthServices =
         retrofit.create(AuthServices::class.java)
