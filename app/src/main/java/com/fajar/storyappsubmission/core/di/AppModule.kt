@@ -16,7 +16,9 @@ import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreMana
 import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferences
 import com.fajar.storyappsubmission.core.data.resource.local.store.UserPreferences.Companion.USER_TOKEN
 import com.fajar.storyappsubmission.core.data.resource.remote.auth.AuthServices
+import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryRepo
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
+import com.fajar.storyappsubmission.features.ui.viewmodel.HomeViewModel
 import com.fajar.storyappsubmission.features.ui.viewmodel.LoginViewModel
 import dagger.Module
 import dagger.Provides
@@ -70,6 +72,9 @@ class AppModule {
         return appDatabase.KeysDao()
     }
 
+
+
+
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context) = StoryDatabase.getDatabase(appContext)
@@ -82,6 +87,18 @@ class AppModule {
     @Provides
     fun provideStoryService(retrofit: Retrofit): StoryServices =
         retrofit.create(StoryServices::class.java)
+
+    @Provides
+    fun provideHomeViewModel(retrofit: Retrofit): HomeViewModel =
+        retrofit.create(HomeViewModel::class.java)
+
+
+
+    @Provides
+    fun provideStoryRepo(retrofit: Retrofit): StoryRepo =
+        retrofit.create(StoryRepo::class.java)
+
+
 
     @Provides
     @Singleton
