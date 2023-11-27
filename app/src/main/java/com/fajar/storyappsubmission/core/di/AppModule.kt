@@ -23,6 +23,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -37,11 +39,13 @@ class AppModule {
 //    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTB3QlBWdzdYSGJSTmlHcTUiLCJpYXQiOjE3MDA3OTQ4NzF9.JuhELfEIsh-ldvhDNoXZblgHDqwmiL89Uok0JMf-fqY"
     @Provides
 //    providesOkHttpClient
-    fun provideOkHttpClient() :OkHttpClient{
+    fun provideOkHttpClient(dataStoreManager: DataStoreManager) :OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val requestBuilder = chain.request().newBuilder()
-                val token = ""
+                val token = runBlocking {
+                    dataStoreManager.getToken().first()
+                }
                 Log.d("cekTokenInRetrofit", "$token")
                 requestBuilder.addHeader("Authorization", "Bearer $token")
                 chain.proceed(requestBuilder.build())
