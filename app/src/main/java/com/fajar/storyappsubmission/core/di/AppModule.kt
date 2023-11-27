@@ -72,9 +72,6 @@ class AppModule {
         return appDatabase.KeysDao()
     }
 
-
-
-
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context) = StoryDatabase.getDatabase(appContext)
@@ -83,7 +80,7 @@ class AppModule {
     @Provides
     fun provideAuthService(retrofit: Retrofit): AuthServices =
         retrofit.create(AuthServices::class.java)
-
+    @Singleton
     @Provides
     fun provideStoryService(retrofit: Retrofit): StoryServices =
         retrofit.create(StoryServices::class.java)
@@ -97,7 +94,6 @@ class AppModule {
     @Provides
     fun provideStoryRepo(retrofit: Retrofit): StoryRepo =
         retrofit.create(StoryRepo::class.java)
-
 
 
     @Provides

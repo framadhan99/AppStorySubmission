@@ -31,7 +31,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
-
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class HomeViewModelTest{
@@ -44,6 +43,7 @@ class HomeViewModelTest{
     @Mock
     private lateinit var storyRepo: StoryRepo
     private lateinit var dataStoreManager: DataStoreManager
+    private lateinit var storySource: StorySource
 
     @Test
     fun `when Get Quote Should Not Null and Return Data`() = runTest {
@@ -53,8 +53,8 @@ class HomeViewModelTest{
         expectedStory.value = data
         Mockito.`when`(storyRepo.loadData()).thenReturn(expectedStory)
 
-        val mainViewModel = HomeViewModel(storyRepo, dataStoreManager)
-        val actualQuote: PagingData<Story> = mainViewModel.pagingStory().getOrAwaitValue()
+        val mainViewModel = StoryViewModel(storyRepo)
+        val actualQuote: PagingData<Story> = mainViewModel.story.getOrAwaitValue()
 
         val differ = AsyncPagingDataDiffer(
             diffCallback = HomeStoryAdapter.DIFF_CALLBACK,
@@ -63,18 +63,19 @@ class HomeViewModelTest{
         )
         differ.submitData(actualQuote)
         Assert.assertNotNull(differ.snapshot())
-        Assert.assertEquals(dummyStory.size, differ.snapshot().size)
+        assertEquals(dummyStory.size, differ.snapshot().size)
 //        Assert.assertEquals(dummyStory[0].id, differ.snapshot()[0]?.id)
-        Assert.assertEquals(dummyStory[0].name, differ.snapshot()[0]?.name)
-        Assert.assertEquals(dummyStory[0].description, differ.snapshot()[0]?.description)
+        assertEquals(dummyStory[0].name, differ.snapshot()[0]?.name)
+        assertEquals(dummyStory[0].description, differ.snapshot()[0]?.description)
     }
     @Test
     fun `when Get Quote Empty Should Return No Data`() = runTest {
         val data: PagingData<Story> = PagingData.from(emptyList())
         val expectedStory = MutableLiveData<PagingData<Story>>()
         expectedStory.value = data
-        `when`(storyRepo.loadData()).thenReturn(expectedStory)
+        Mockito.`when`(storyRepo.loadData()).thenReturn(expectedStory)
         val mainViewModel = HomeViewModel(storyRepo, dataStoreManager)
+        mainViewModel.tokenUser()
         val actualQuote: PagingData<Story> = mainViewModel.pagingStory().getOrAwaitValue()
         val differ = AsyncPagingDataDiffer(
             diffCallback = HomeStoryAdapter.DIFF_CALLBACK,
@@ -82,7 +83,7 @@ class HomeViewModelTest{
             workerDispatcher = Dispatchers.Main,
         )
         differ.submitData(actualQuote)
-        Assert.assertEquals(0, differ.snapshot().size)
+        assertEquals(0, differ.snapshot().size)
     }
 }
 

@@ -41,6 +41,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -50,25 +51,25 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation("androidx.activity:activity-ktx:1.8.0")
+    implementation("androidx.activity:activity-ktx:1.8.1")
     implementation("androidx.camera:camera-core:1.3.0")
     implementation("androidx.camera:camera-view:1.3.0")
     implementation("androidx.camera:camera-lifecycle:1.3.0")
 
-    implementation ("com.github.bumptech.glide:glide:4.13.1")
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
     // lifecycle
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
     //navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
-    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation("androidx.paging:paging-runtime-ktx:3.1.0")
     //gmaps
     implementation("com.google.android.gms:play-services-maps:18.2.0")
 
@@ -94,8 +95,8 @@ dependencies {
     //Dagger - Hilt
     implementation ("com.google.dagger:hilt-android:2.48")
     ksp("com.google.dagger:hilt-android-compiler:2.48")
-    kspAndroidTest ("com.google.dagger:hilt-android-compiler:2.44")
-    kspTest ("com.google.dagger:hilt-compiler:2.44")
+    kspAndroidTest ("com.google.dagger:hilt-android-compiler:2.48")
+    kspTest ("com.google.dagger:hilt-compiler:2.48")
 
     //room
     ksp("androidx.room:room-compiler:2.6.0")
@@ -104,14 +105,14 @@ dependencies {
     implementation("androidx.room:room-paging:2.6.0")
 
     //mockito
-    testImplementation ("org.mockito:mockito-core:3.12.4")
-    testImplementation ("org.mockito:mockito-inline:3.12.4")
+    testImplementation ("org.mockito:mockito-core:4.5.1")
+    testImplementation ("org.mockito:mockito-inline:4.5.1")
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
