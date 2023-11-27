@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fajar.storyappsubmission.R
 import com.fajar.storyappsubmission.core.data.resource.local.page.LoadingStateAdapter
 import com.fajar.storyappsubmission.databinding.ActivityHomeBinding
-import com.fajar.storyappsubmission.features.hometest.HomeAdapter
+import com.fajar.storyappsubmission.features.ui.adapter.HomeAdapter
 import com.fajar.storyappsubmission.features.ui.viewmodel.HomeVM
 import com.fajar.storyappsubmission.features.ui.fragments.AddStoryFragment
 import dagger.hilt.android.AndroidEntryPoint

@@ -24,6 +24,10 @@ class DataStoreManager(appContext: Context) {
         }
     }
 
+    fun getToken() =  userDataStore.data.map {
+        it[USER_TOKEN_KEY]
+    }
+
     suspend fun deleteSession() {
         userDataStore.edit { data ->
             data.clear()
