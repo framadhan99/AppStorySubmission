@@ -1,4 +1,4 @@
-package com.fajar.storyappsubmission.features.hometest
+package com.fajar.storyappsubmission.core.data.resource.remote.story
 
 import android.util.Log
 import androidx.paging.ExperimentalPagingApi
@@ -8,6 +8,7 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.fajar.storyappsubmission.core.data.resource.local.room.KeyEntity
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDatabase
+import com.fajar.storyappsubmission.core.data.resource.remote.home.HomeService
 
 @OptIn(ExperimentalPagingApi::class)
 class StoryRemoteMediator (

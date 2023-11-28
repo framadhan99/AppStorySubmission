@@ -1,9 +1,6 @@
 package com.fajar.storyappsubmission.utils
 
-import com.fajar.storyappsubmission.core.data.model.Story
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryRepo
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponse
-import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
+import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponseItems
 
 object DataDummy {
     fun generateDummyQuoteResponse(): List<StoryResponseItems> {

@@ -2,10 +2,8 @@ package com.fajar.storyappsubmission.core.data.resource.local.page
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.fajar.storyappsubmission.core.data.model.Story
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
-import com.fajar.storyappsubmission.features.hometest.HomeService
-import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
+import com.fajar.storyappsubmission.core.data.resource.remote.home.HomeService
+import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponseItems
 
 class StoryPageSource(private val homeService: HomeService) : PagingSource<Int, StoryResponseItems>() {
 

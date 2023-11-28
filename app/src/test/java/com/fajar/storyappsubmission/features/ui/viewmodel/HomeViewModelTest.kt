@@ -9,8 +9,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.recyclerview.widget.ListUpdateCallback
 import com.fajar.storyappsubmission.features.ui.adapter.HomeAdapter
-import com.fajar.storyappsubmission.features.hometest.HomeRepository
-import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
+import com.fajar.storyappsubmission.core.data.resource.remote.home.HomeRepository
+import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponseItems
 import com.fajar.storyappsubmission.utils.DataDummy
 import com.fajar.storyappsubmission.utils.MainDispatcherRule
 import com.fajar.storyappsubmission.utils.getOrAwaitValue

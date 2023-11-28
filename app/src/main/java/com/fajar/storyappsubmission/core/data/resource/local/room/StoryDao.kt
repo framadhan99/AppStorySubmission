@@ -5,8 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.fajar.storyappsubmission.core.data.model.Story
-import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
+import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponseItems
 
 @Dao
 interface StoryDao {

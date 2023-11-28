@@ -5,12 +5,10 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.fajar.storyappsubmission.core.data.model.Story
 import com.fajar.storyappsubmission.core.data.resource.local.room.KeyEntity
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDatabase
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
-import com.fajar.storyappsubmission.features.hometest.HomeService
-import com.fajar.storyappsubmission.features.hometest.StoryResponseItems
+import com.fajar.storyappsubmission.core.data.resource.remote.home.HomeService
+import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponseItems
 
 @OptIn(ExperimentalPagingApi::class)
 class RemoteMediator(

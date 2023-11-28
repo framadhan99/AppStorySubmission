@@ -1,4 +1,4 @@
-package com.fajar.storyappsubmission.features.hometest
+package com.fajar.storyappsubmission.core.data.resource.remote.home
 
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponse
 import retrofit2.http.GET

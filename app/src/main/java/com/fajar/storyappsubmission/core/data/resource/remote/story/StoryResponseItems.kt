@@ -1,10 +1,13 @@
-package com.fajar.storyappsubmission.features.hometest
+package com.fajar.storyappsubmission.core.data.resource.remote.story
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "Story")
+@Parcelize
 data class StoryResponseItems (
 
     @field:SerializedName("photoUrl")
@@ -28,4 +31,4 @@ data class StoryResponseItems (
 
     @field:SerializedName("lat")
     val lat: Double? = null
-)
+): Parcelable

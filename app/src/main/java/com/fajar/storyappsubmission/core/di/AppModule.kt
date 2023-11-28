@@ -4,16 +4,14 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.room.Room
 import com.fajar.storyappsubmission.core.data.resource.local.room.KeyDao
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDao
 import com.fajar.storyappsubmission.core.data.resource.local.room.StoryDatabase
 import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreManager
-import com.fajar.storyappsubmission.core.data.resource.local.store.DataStoreManager.Companion.USER_TOKEN_KEY
 import com.fajar.storyappsubmission.core.data.resource.remote.auth.AuthServices
 import com.fajar.storyappsubmission.core.data.resource.remote.maps.MapsService
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryServices
-import com.fajar.storyappsubmission.features.hometest.HomeService
+import com.fajar.storyappsubmission.core.data.resource.remote.home.HomeService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,10 +20,8 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
