@@ -28,7 +28,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
     @Provides
-//    providesOkHttpClient
     fun providesOkHttpClient(dataStoreManager: DataStoreManager): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->

@@ -4,18 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.fajar.storyappsubmission.R
-import com.fajar.storyappsubmission.core.data.model.Story
 import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponseItems
 import com.fajar.storyappsubmission.databinding.ItemsStoryBinding
 import com.fajar.storyappsubmission.features.ui.activity.DetailActivity
@@ -25,27 +20,6 @@ import dagger.hilt.android.internal.managers.ViewComponentManager
 
 class HomeAdapter :
     PagingDataAdapter<StoryResponseItems, HomeAdapter.MyViewHolder>(DIFF_CALLBACK) {
-//    private var onItemClickListener: OnItemClickListener? = null
-//
-//    fun setOnItemClickListener(listener: OnItemClickListener) {
-//        onItemClickListener = listener
-//    }
-//
-//    inner class ViewModel(view: View) : RecyclerView.ViewHolder(view) {
-//        val imageView: ImageView = view.findViewById(R.id.img_item_photo)
-//        val userName: TextView = view.findViewById(R.id.tv_item_name)
-//        val detail: TextView = view.findViewById(R.id.tv_item_description)
-//        init {
-//            itemView.setOnClickListener {
-//                val position = bindingAdapterPosition
-//                if (position != RecyclerView.NO_POSITION) {
-//                    onItemClickListener?.onItemClick(getItem(position))
-//                }
-//            }
-//        }
-//    }
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemsStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
@@ -81,7 +55,6 @@ class HomeAdapter :
                         .toBundle()
                 )
             }
-            Log.d("data detail user", "$data")
             Glide.with(itemView.context)
                 .load(data.photoUrl.toString())
                 .circleCrop()
@@ -91,9 +64,7 @@ class HomeAdapter :
 
         }
     }
-//    interface OnItemClickListener {
-//        fun onItemClick(story: StoryResponseItems?)
-//    }
+
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryResponseItems>() {
             override fun areItemsTheSame(oldItem: StoryResponseItems, newItem: StoryResponseItems): Boolean {

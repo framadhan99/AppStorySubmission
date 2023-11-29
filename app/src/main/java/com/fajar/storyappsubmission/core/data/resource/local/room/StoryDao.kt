@@ -12,8 +12,6 @@ interface StoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStory(story: List<StoryResponseItems>)
 
-//    @Query("SELECT * FROM Story")
-//    fun getAllStory(): PagingSource<Int, Story>
     @Query("SELECT * FROM Story")
     fun getAllStory(): PagingSource<Int, StoryResponseItems>
 

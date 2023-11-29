@@ -13,31 +13,10 @@ import javax.inject.Singleton
 
 @Singleton
 class StorySource @Inject constructor(
-    private val homeService: HomeService,
     private val storyServices: StoryServices,
-    private val storyDatabase: StoryDatabase
 ) {
 
-//    fun loadData(token: String): Flow<PagingData<StoryResponseItems>> {
-//        @OptIn(ExperimentalPagingApi::class)
-//        return Pager(
-//            config = PagingConfig(
-//                pageSize = 5
-//            ),
-//            remoteMediator = RemoteMediator(storyDatabase, home , token),
-//            pagingSourceFactory = {
-////                StoryPagingSource(storyServices, token)
-//                storyDatabase.storyDao().getAllStories()
-//            }
-//        ).flow
-//    }
-
-    suspend fun getData(): List<StoryResponseItems> {
-        return storyDatabase.storyDao().getMapAll()
-    }
-
     suspend fun addStory(
-//        token: String,
         desc: String,
         img: MultipartBody.Part
     ): Flow<ApiResult<StoryResponse>> {
@@ -45,11 +24,8 @@ class StorySource @Inject constructor(
             try {
                 emit(ApiResult.loading())
                 val response = storyServices.addStory(
-//                    BearerToken = "Bearer $token",
                     desc.toRequestBody("text/plain".toMediaType()),
                     img
-//                    desc.toRequestBody("text/plain".toMediaType()),
-//                    img.asRequestBody()
                 )
                 if (!response.error) {
                     emit(ApiResult.success(response))

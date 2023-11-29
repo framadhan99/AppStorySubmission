@@ -11,27 +11,11 @@ import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface StoryServices {
-
-    @GET("stories")
-    suspend fun getStory(
-//        @Header("Authorization") BearerToken: String
-    ): StoryResponse
-
     @Multipart
     @POST("stories")
     suspend fun addStory(
-//        @Header("Authorization") BearerToken: String,
         @Part("description") desc: RequestBody,
         @Part file: MultipartBody.Part
     ): StoryResponse
-
-//    @GET("stories")
-//    suspend fun getStories(
-//        @Header("Authorization") token: String,
-//        @Query("page") page: Int,
-//        @Query("size") size: Int,
-//        @Query("location") location: Int? = null
-//    ): StoryResponse
-
 
 }

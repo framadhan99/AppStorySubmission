@@ -13,7 +13,6 @@ import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryRespons
 @OptIn(ExperimentalPagingApi::class)
 class RemoteMediator(
     private val database: StoryDatabase,
-//    private val storyServices: StoryServices,
     private val homeService: HomeService,
     private val token: String
 

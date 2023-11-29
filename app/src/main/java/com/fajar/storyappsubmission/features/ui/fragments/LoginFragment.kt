@@ -60,12 +60,9 @@ class LoginFragment : Fragment() {
     private fun checkLogin(){
         loginVM.tokenUser.observe(viewLifecycleOwner){ checkLogin ->
             if (checkLogin.isNotEmpty()){
-//                showToast(requireContext(), getString(R.string.notice_checking_session))
                 val mIntent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(mIntent)
                 (activity as StoryActivity?)?.finish()
-//                val moveToHome = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-//                NavHostFragment.findNavController(this).navigate(moveToHome)
             }
         }
     }

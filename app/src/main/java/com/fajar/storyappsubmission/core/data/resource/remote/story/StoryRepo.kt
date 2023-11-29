@@ -10,22 +10,10 @@ import javax.inject.Singleton
 
 @Singleton
 class StoryRepo @Inject constructor(private val storySource: StorySource) {
-
-//    fun loadData(token: String): LiveData<PagingData<StoryResponseItems>> =
-//        storySource.loadData(token).asLiveData()
-
-    suspend fun getData(): List<StoryResponseItems> {
-        return storySource.getData()
-    }
-
-
     suspend fun addStory(
-//        token: String,
         desc: String,
         img: MultipartBody.Part
     ): Flow<ApiResult<StoryResponse>> {
         return storySource.addStory( desc, img).flowOn(Dispatchers.IO)
     }
-
-
 }

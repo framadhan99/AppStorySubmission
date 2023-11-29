@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fajar.storyappsubmission.R
 import com.fajar.storyappsubmission.core.data.resource.local.page.LoadingStateAdapter
@@ -16,13 +15,7 @@ import com.fajar.storyappsubmission.features.ui.adapter.HomeAdapter
 import com.fajar.storyappsubmission.features.ui.viewmodel.HomeVM
 import com.fajar.storyappsubmission.features.ui.fragments.AddStoryFragment
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
-import com.fajar.storyappsubmission.core.data.model.Story
-import com.fajar.storyappsubmission.core.data.resource.remote.story.StoryResponseItems
 import com.fajar.storyappsubmission.features.StoryActivity
-import com.fajar.storyappsubmission.features.ui.fragments.LoginFragment
 import com.fajar.storyappsubmission.features.ui.viewmodel.UserViewModel
 
 @AndroidEntryPoint
